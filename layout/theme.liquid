@@ -14,10 +14,10 @@
   </head>
 
   <body>
-    {% sections 'header-group' %}
+    {% comment %} {% sections 'header-group' %} {% endcomment %}
 
     {{ content_for_layout }}
 
-    {% sections 'footer-group' %}
+    {% comment %} {% sections 'footer-group' %} {% endcomment %}
   </body>
 </html>
