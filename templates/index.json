@@ -1,11 +1,31 @@
 {
   "sections": {
-    "main": {
+    "banner": {
       "type": "banner",
+      "settings": {}
+    },
+    "three-images": {
+      "type": "three-images",
+      "settings": {}
+    },
+    "more-info": {
+      "type": "more-info",
+      "settings": {}
+    },
+    "all-collections": {
+      "type": "all-collections",
+      "settings": {}
+    },
+    "all-products": {
+      "type": "all-products",
       "settings": {}
     }
   },
   "order": [
-    "main"
+    "banner",
+    "three-images",
+    "more-info",
+    "all-collections",
+    "all-products"
   ]
 }

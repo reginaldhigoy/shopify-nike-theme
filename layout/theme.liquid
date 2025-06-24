@@ -14,8 +14,10 @@
   </head>
 
   <body>
-    {% comment %} {% sections 'header-group' %} {% endcomment %}
-
+   
+     {% section 'announcement-bar' %}
+     {% section 'header' %}
+    
     {{ content_for_layout }}
 
     {% comment %} {% sections 'footer-group' %} {% endcomment %}

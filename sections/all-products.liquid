@@ -1,0 +1,125 @@
+<section class="all-products">
+  {% if collections['best-sellers'] != blank %}
+    <h1>{{ collections['best-sellers'].title }}</h1>
+    <div class="product-container">
+      <div class="all-products-wrapper">
+        {% for product in collections['best-sellers'].products %}
+          <div class="product-card">
+            <img
+              width="300"
+              height="300"
+              loading="lazy"
+              src="{{ product.featured_image | image_url }}"
+              alt="{{ product.title }}">
+            <h3>{{ product.title | link_to: product.url }}</h3>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  {% else %}
+    <p style="text-align:center;">No products found in the "best-sellers" collection.</p>
+  {% endif %}
+</section>
+
+<style>
+  .all-products {
+    background: {{ section.settings.background }};
+    color: {{ section.settings.text_color }};
+    padding: 10px;
+
+  }
+
+  .all-products-wrapper {
+    display: flex;
+    gap: 10px;
+    transition: transform 0.3s ease;
+
+  }
+  .product-container {
+    position: relative;
+    overflow-x: auto;
+    -ms-overflow-style: none;
+    /* IE/Edge */
+    scrollbar-width: none;
+    /* Firefox */
+  }
+
+  .product-container::-webkit-scrollbar {
+    display: none;
+    /* Chrome/Safari */
+  }
+
+  .product-card {
+    min-width: 250px;
+    max-width: 300px;
+    flex: 0 0 auto;
+    padding: 10px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+  }
+
+  .product-card h3 a {
+    color: black;
+    text-decoration: none
+  }
+
+  .product-card a:hover {
+    text-decoration: underline;
+  }
+
+  .all-products > h1 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+</style>
+
+{% comment %} 
+    <script> 
+    document.addEventListener('DOMContentLoaded', function () { 
+    const wrapper = document.querySelector('.all-collections-wrapper'); 
+    const scrollLeftButton = document.querySelector('.scroll-left'); 
+    const scrollRightButton = document.querySelector('.scroll-right'); 
+    scrollLeftButton.addEventListener('click', function () { 
+    wrapper.scrollBy({ 
+    left: -300, // Adjust based on your card width 
+    behavior: 'smooth', 
+    }); 
+    }); 
+    scrollRightButton.addEventListener('click', function () { 
+    wrapper.scrollBy({ 
+    left: 300, // Adjust based on your card width 
+    behavior: 'smooth', 
+    }); 
+    }); 
+    });
+    </script> 
+{% endcomment %}
+
+{% schema %}
+  {
+    "name": "all-products",
+    "settings": [
+      {
+        "type": "color",
+        "id": "background",
+        "label": "Background",
+        "default": "#F4F4F4"
+      }, {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text",
+        "default": "#000000"
+      }
+    ],
+    "presets": [
+      {
+        "name": "all-products"
+      }
+    ]
+  }
+{% endschema %}

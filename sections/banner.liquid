@@ -1,1 +1,88 @@
-hello shopify
+<section>
+    <div class="font-serif text-lg font-medium py-8 banner-wrapper">
+        <div class="slide-text" id="text1"><p>Members: Free Shipping!</p></div>
+        <div class="slide-text" id="text2"><p>Save Up to 40%</p></div>
+        <div class="slide-text" id="text3"><p>Get Your Gear Faster</p></div>
+    </div>
+</section>
+
+<style>
+  .banner-wrapper {
+    background: {{ section.settings.background }};
+    color: {{ section.settings.text_color }}
+  }
+
+  .slide-text {
+  position: absolute;
+  top: 100px;
+  left: -100%;
+  transform: translate(-50%, -50%);
+  color: black;
+  padding: 20px;
+  font-size: 20px;
+  opacity: 0;
+  transition: all 0.5s ease-in-out;
+  white-space: nowrap;
+  }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const text1 = document.getElementById('text1');
+        const text2 = document.getElementById('text2');
+        const text3 = document.getElementById('text3');
+
+        let currentIndex = 0;
+        const texts = [text1, text2, text3];
+
+        function slideToMiddle(element) {
+            element.style.left = '50%';
+            element.style.opacity = '1';
+            element.style.transform = 'translateX(-50%)';
+        }
+
+        function resetPosition(element) {
+            element.style.left = '-100%';
+            element.style.opacity = '0';
+        }
+
+        function slideText() {
+            resetPosition(texts[currentIndex]);
+            currentIndex = (currentIndex + 1) % texts.length;
+            slideToMiddle(texts[currentIndex]);
+        }
+
+        texts.forEach((el, i) => {
+            if (i !== currentIndex) resetPosition(el);
+        });
+
+        slideToMiddle(texts[currentIndex]);
+        setInterval(slideText, 3000);
+    });
+</script>
+
+
+{% schema %}
+{
+    "name": "Banner",
+    "settings": [
+        {
+        "type": "color",
+        "id": "background",
+        "label": "Background Color",
+        "default": "#f4f4f4"
+      }, 
+      {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text Color",
+        "default": "#000000"
+      }
+        ],
+    "presets": [
+        {
+            "name": "banner"
+        }
+    ]
+}
+{% endschema %}

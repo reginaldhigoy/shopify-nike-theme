@@ -1,0 +1,24 @@
+<header class="relative flex items-center justify-between font-medium px-5 py-2 bg-white border">
+<div class="z-10">
+    <a href="/"><img width="80" height="50" loading="lazy" src="{{ 'logo.png' |  asset_url }}" alt="logo"></a>
+</div>
+
+<div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 font-serif text-md font-bold pointer-events-none">
+    <ul class="flex gap-5 pointer-events-auto">
+        {% for link in linklists.backup.links %}
+            <li>
+                <a href="{{ link.url }}" class="hover:border-black transition-all duration-300 pb-1 border-b-2 border-transparent relative">{{ link.title }}</a>
+            </li>
+         {% endfor %}
+    </ul>
+</div>
+
+<div class="z-10 flex gap-2 items-center">
+    <form action="/search">
+      <input type="search" name="q" placeholder="search" class="bg-gray-200 outline-0 rounded-lg px-4 py-1">
+    </form>
+
+     <a href="/"><img width="40" height="40" loading="lazy" src="{{ 'd.png' |  asset_url }}" alt="logo"></a>
+</div>
+</header>
+
